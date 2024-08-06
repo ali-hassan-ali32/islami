@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:islamic_app/core/widgets/background_widget.dart';
+import 'package:islamic_app/modules/layout/hadeeth/screens/hadith_screen.dart';
 import 'package:islamic_app/modules/layout/quran/screen/quran_screen.dart';
-import 'package:islamic_app/modules/layout/screens/hades_screen.dart';
 import 'package:islamic_app/modules/layout/screens/radio_screen.dart';
 import 'package:islamic_app/modules/layout/screens/sabha_screen.dart';
 import 'package:islamic_app/modules/layout/screens/setting.dart';
@@ -20,7 +20,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
   List<Widget> screens = [
     RadioScreen(),
     SabhaScreen(),
-    HadesScreen(),
+    HadithsScreen(),
     QuranScreen(),
     SettingScreen()
   ];
@@ -58,7 +58,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
                 AssetImage('assets/icons/hades.png'),
                 size: 32,
               ),
-              label: 'hades'),
+              label: 'hadith'),
           BottomNavigationBarItem(
               icon: ImageIcon(
                 AssetImage('assets/icons/quran.png'),
