@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:islamic_app/core/functions/get_translation.dart';
 import 'package:islamic_app/core/themes/app_themes.dart';
 import 'package:islamic_app/core/widgets/background_widget.dart';
 
@@ -27,7 +28,10 @@ class _HadithDetailsScreenState extends State<HadithDetailsScreen> {
         child: Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
-        title: Text('islamic'),
+        title: Text(
+          getTranslation(context).islami,
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
       ),
       body: Card(
           child: hadith.isEmpty

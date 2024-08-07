@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:islamic_app/core/functions/get_translation.dart';
 import 'package:islamic_app/core/widgets/background_widget.dart';
 
 class RadioScreen extends StatefulWidget {
@@ -25,8 +26,7 @@ class _RadioScreenState extends State<RadioScreen> {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 50),
-            child: Text(
-              'Holy Quran Radio',
+            child: Text(getTranslation(context).holyQuranRadio,
                 style: Theme.of(context).textTheme.bodyMedium),
           ),
           Padding(

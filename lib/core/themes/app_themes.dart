@@ -6,7 +6,7 @@ class AppTheme {
 
   static Color darkPrimaly = Color(0xff141A2E);
   static Color darkSecondary = Color(0xffFACC1D);
-  static const bool isDark = false;
+  static const bool isDark = true;
 
   static ThemeData light = ThemeData(
       textTheme: TextTheme(
@@ -124,6 +124,9 @@ class AppTheme {
       dividerColor: darkSecondary,
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(25))),
+              minimumSize: const Size(137, 51),
               backgroundColor: darkSecondary, onPrimary: Colors.black)),
       colorScheme: ColorScheme.fromSeed(
           seedColor: darkPrimaly,

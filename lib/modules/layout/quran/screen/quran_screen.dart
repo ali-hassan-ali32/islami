@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:islamic_app/core/functions/get_image_path.dart';
-import 'package:islamic_app/core/themes/app_themes.dart';
+import 'package:islamic_app/core/functions/get_translation.dart';
 import 'package:islamic_app/modules/layout/quran/widgets/chapter_title.dart';
 
 class QuranScreen extends StatelessWidget {
@@ -358,6 +358,7 @@ class QuranScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Locale selectedLocale = Localizations.localeOf(context);
     return Column(
       children: [
         Image.asset(getImagePath('quran_header_icn')),
@@ -367,8 +368,7 @@ class QuranScreen extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: Text(
-            'Chapter Name',
+          child: Text(getTranslation(context).chapterName,
               style: Theme.of(context).textTheme.bodyMedium),
         ),
         Divider(
@@ -380,7 +380,9 @@ class QuranScreen extends StatelessWidget {
               physics: BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 return ChapterTitle(
-                  text: englishQuranSurahs[index],
+                  text: selectedLocale.languageCode == 'en'
+                      ? englishQuranSurahs[index]
+                      : arabicAuranSuras[index],
                   index: index,
                 );
               },
