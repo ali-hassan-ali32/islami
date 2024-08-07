@@ -27,8 +27,7 @@ class _RadioScreenState extends State<RadioScreen> {
             padding: const EdgeInsets.only(top: 50),
             child: Text(
               'Holy Quran Radio',
-              style: TextStyle(fontSize: 25),
-            ),
+                style: Theme.of(context).textTheme.bodyMedium),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 75),

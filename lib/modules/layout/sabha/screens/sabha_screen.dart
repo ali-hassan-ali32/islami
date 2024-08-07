@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:islamic_app/core/themes/app_themes.dart';
 
 class SabhaScreen extends StatefulWidget {
   static final String routeName = 'SabhaScreen';
@@ -52,17 +53,17 @@ class _SabhaScreenState extends State<SabhaScreen> {
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 16, top: 25),
-            child: const Text(
-              'Number of praises',
-              style: TextStyle(fontSize: 25),
-            ),
+            child: Text('Number of praises',
+                style: Theme.of(context).textTheme.bodyMedium),
           ),
           // SizedBox(height: 0,),
           Container(
             width: 55,
             height: 60,
             decoration: BoxDecoration(
-                color: Color(0xffceb490),
+                color: AppTheme.isDark
+                    ? AppTheme.darkPrimaly
+                    : AppTheme.lightPrimaly,
                 borderRadius: BorderRadius.all(Radius.circular(25))),
             child: Center(
                 child: Text('$praisesNumber', style: TextStyle(fontSize: 25))),
@@ -86,15 +87,16 @@ class _SabhaScreenState extends State<SabhaScreen> {
                     }
                   });
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xffB7935F),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(25))),
-                  minimumSize: const Size(137, 51),
-                ),
+                style: Theme.of(context).elevatedButtonTheme.style,
                 child: Text(
                   praisesName[selectedPraise],
-                  style: TextStyle(fontSize: 25),
+                  style: TextStyle(
+                      fontWeight:
+                          Theme.of(context).textTheme.bodyMedium!.fontWeight,
+                      fontSize: 25,
+                      fontFamily: 'inter',
+                      color:
+                          AppTheme.isDark ? Color(0xff242424) : Colors.white),
                 )),
           ),
         ],

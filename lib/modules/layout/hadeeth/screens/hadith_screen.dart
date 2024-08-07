@@ -14,49 +14,33 @@ class HadithsScreen extends StatelessWidget {
     return Column(
       children: [
         Image.asset(getImagePath('hadith_header')),
-        Container(
-          width: double.infinity,
+        Divider(
+          color: Theme.of(context).dividerColor,
           height: 2,
-          color: AppTheme.primalyLightColor,
+          thickness: 2,
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
             'Hadiths',
             textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
+              style: Theme.of(context).textTheme.bodyMedium),
         ),
-        Container(
-          width: double.infinity,
+        Divider(
+          color: Theme.of(context).dividerColor,
           height: 2,
-          color: AppTheme.primalyLightColor,
+          thickness: 2,
         ),
         Expanded(
-          child: ListView.separated(
+          child: ListView.builder(
               physics: BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 return HadithTitle(fileIndex: index);
-              },
-              separatorBuilder: (context, index) {
-                return Container(
-                  width: double.infinity,
-                  height: 2,
-                  color: AppTheme.primalyLightColor,
-                );
               },
               itemCount: 50),
         )
       ],
     );
-  }
-
-  void _readHadithData(int fileIndex) async {
-    String fileContent =
-        await rootBundle.loadString('assets/hadith/h${fileIndex + 1}.txt');
   }
 }
 

@@ -30,10 +30,6 @@ class _HadithDetailsScreenState extends State<HadithDetailsScreen> {
         title: Text('islamic'),
       ),
       body: Card(
-          elevation: 24,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-          margin: EdgeInsets.symmetric(vertical: 64, horizontal: 24),
           child: hadith.isEmpty
               ? Center(child: CircularProgressIndicator())
               : Column(
@@ -44,14 +40,20 @@ class _HadithDetailsScreenState extends State<HadithDetailsScreen> {
                         hadith[0],
                         textAlign: TextAlign.center,
                         textDirection: TextDirection.rtl,
-                        style: TextStyle(fontSize: 25),
+                        style: TextStyle(
+                            fontSize: 25,
+                            color: AppTheme.isDark
+                                ? AppTheme.darkSecondary
+                                : Colors.black,
+                            fontFamily: 'inter'),
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.symmetric(horizontal: 64),
+                    Divider(
+                      thickness: 2,
                       height: 2,
-                      width: double.infinity,
-                      color: AppTheme.primalyLightColor,
+                      indent: 75,
+                      color: Theme.of(context).dividerColor,
+                      endIndent: 75,
                     ),
                     Expanded(
                       child: ListView.builder(
@@ -63,7 +65,7 @@ class _HadithDetailsScreenState extends State<HadithDetailsScreen> {
                             child: Text(
                               hadith[index + 1],
                               textDirection: TextDirection.rtl,
-                              style: TextStyle(fontSize: 20),
+                              style: Theme.of(context).textTheme.bodySmall,
                             ),
                           );
                         },

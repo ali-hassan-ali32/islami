@@ -18,6 +18,8 @@ class MyApp extends StatelessWidget {
       title: 'islamic',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
+      darkTheme: AppTheme.dark,
+      themeMode: ThemeMode.light,
       initialRoute: SplashScreen.routeName,
       routes: {
         SplashScreen.routeName: (_) => SplashScreen(),
