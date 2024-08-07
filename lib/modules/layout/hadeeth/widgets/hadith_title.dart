@@ -20,7 +20,8 @@ class HadithTitle extends StatelessWidget {
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 25,
-          ),
+              fontFamily: 'inter',
+              color: Theme.of(context).textTheme.bodyMedium!.color),
         ),
       ),
     );

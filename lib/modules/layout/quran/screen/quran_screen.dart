@@ -361,40 +361,27 @@ class QuranScreen extends StatelessWidget {
     return Column(
       children: [
         Image.asset(getImagePath('quran_header_icn')),
-        Container(
+        Divider(
+          thickness: 2,
           height: 2,
-          width: double.infinity,
-          color: AppTheme.primalyLightColor,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Text(
             'Chapter Name',
-            style: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
+              style: Theme.of(context).textTheme.bodyMedium),
         ),
-        Container(
+        Divider(
+          thickness: 2,
           height: 2,
-          width: double.infinity,
-          color: AppTheme.primalyLightColor,
         ),
         Expanded(
-          child: ListView.separated(
+          child: ListView.builder(
               physics: BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 return ChapterTitle(
                   text: englishQuranSurahs[index],
                   index: index,
-                );
-              },
-              separatorBuilder: (context, index) {
-                return Container(
-                  height: 2,
-                  width: double.infinity,
-                  color: AppTheme.primalyLightColor,
                 );
               },
               itemCount: 114),

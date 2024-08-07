@@ -18,11 +18,15 @@ class ChapterTitle extends StatelessWidget {
         Navigator.pushNamed(context, ChapterDetailsScreen.routeName,
             arguments: ChapterDetailsArg(title: text, index: index));
       },
-      child: Text(
-        text,
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          fontSize: 25,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+          text,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontSize: 25,
+              color: Theme.of(context).textTheme.bodyMedium!.color,
+              fontFamily: 'inter'),
         ),
       ),
     );

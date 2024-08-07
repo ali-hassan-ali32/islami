@@ -28,7 +28,14 @@ class _ChapterDetailsScreenState extends State<ChapterDetailsScreen> {
         child: Scaffold(
             backgroundColor: Colors.transparent,
             appBar: AppBar(
-              title: Text(arg.title),
+              title: Text(
+                arg.title,
+                style: TextStyle(
+                    fontSize: 30,
+                    color:
+                        AppTheme.isDark ? AppTheme.darkSecondary : Colors.black,
+                    fontFamily: 'Messiri'),
+              ),
             ),
             body: Card(
               elevation: 24,
@@ -37,20 +44,14 @@ class _ChapterDetailsScreenState extends State<ChapterDetailsScreen> {
               margin: EdgeInsets.symmetric(vertical: 64, horizontal: 24),
               child: verses.isEmpty
                   ? Center(child: CircularProgressIndicator())
-                  : ListView.separated(
+                  : ListView.builder(
                       physics: BouncingScrollPhysics(),
                       itemCount: verses.length,
-                      separatorBuilder: (context, index) {
-                        return Container(
-                          width: double.infinity,
-                          height: 2,
-                          color: AppTheme.primalyLightColor,
-                          margin: EdgeInsets.symmetric(horizontal: 64),
-                        );
-                      },
                       itemBuilder: (context, index) {
                         return VerseContent(
-                            content: verses[index], index: index);
+                          content: verses[index],
+                          index: index,
+                        );
                       },
                     ),
             )));

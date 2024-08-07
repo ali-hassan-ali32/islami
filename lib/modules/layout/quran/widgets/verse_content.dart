@@ -14,11 +14,9 @@ class VerseContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       textDirection: TextDirection.rtl,
-      '${content} (${index + 1}).',
+      '${content}\n (${index + 1})',
       textAlign: TextAlign.center,
-      style: TextStyle(
-        fontSize: 25,
-      ),
+      style: Theme.of(context).textTheme.bodySmall,
     );
   }
 }
