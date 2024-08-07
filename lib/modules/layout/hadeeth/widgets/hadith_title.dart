@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:islamic_app/core/functions/get_translation.dart';
 import 'package:islamic_app/modules/layout/hadeeth/screens/hadith_details.dart';
 
 class HadithTitle extends StatelessWidget {
@@ -16,7 +17,7 @@ class HadithTitle extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Text(
-          'Hadith Number (${fileIndex + 1}).',
+          '${getTranslation(context).hadithNumber} (${fileIndex + 1})',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 25,

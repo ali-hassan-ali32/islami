@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:islamic_app/core/functions/get_translation.dart';
 import 'package:islamic_app/core/widgets/background_widget.dart';
 import 'package:islamic_app/modules/layout/hadeeth/screens/hadith_screen.dart';
 import 'package:islamic_app/modules/layout/quran/screen/quran_screen.dart';
@@ -6,16 +7,16 @@ import 'package:islamic_app/modules/layout/radio/screens/radio_screen.dart';
 import 'package:islamic_app/modules/layout/sabha/screens/sabha_screen.dart';
 import 'package:islamic_app/modules/layout/screens/setting.dart';
 
-class LayoutScreen extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
   static final String routeName = 'LayoutScreen';
 
-  const LayoutScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
-  State<LayoutScreen> createState() => _LayoutScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _LayoutScreenState extends State<LayoutScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
   List<Widget> screens = [
     RadioScreen(),
@@ -32,7 +33,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
       backgroundColor: Colors.transparent,
       appBar: AppBar(
         title: Text(
-          'islami',
+          getTranslation(context).islami,
           style: Theme.of(context).textTheme.titleLarge,
         ),
       ),
@@ -49,26 +50,28 @@ class _LayoutScreenState extends State<LayoutScreen> {
                 AssetImage('assets/icons/radio_blue.png'),
                 size: 32,
               ),
-              label: 'radio'),
+              label: getTranslation(context).radio),
           BottomNavigationBarItem(
               icon: ImageIcon(
                 AssetImage('assets/icons/sebha.png'),
                 size: 32,
               ),
-              label: 'sabha'),
+              label: getTranslation(context).sabha),
           BottomNavigationBarItem(
               icon: ImageIcon(
                 AssetImage('assets/icons/hades.png'),
                 size: 32,
               ),
-              label: 'hadith'),
+              label: getTranslation(context).hadith),
           BottomNavigationBarItem(
               icon: ImageIcon(
                 AssetImage('assets/icons/quran.png'),
                 size: 32,
               ),
-              label: 'quran'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'setting'),
+              label: getTranslation(context).quran),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: getTranslation(context).setting),
         ],
       ),
       body: screens[selectedIndex],
