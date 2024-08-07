@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:islamic_app/core/functions/get_image_path.dart';
-import 'package:islamic_app/core/themes/app_themes.dart';
+import 'package:islamic_app/core/functions/get_translation.dart';
 import 'package:islamic_app/modules/layout/quran/widgets/chapter_title.dart';
 
 class QuranScreen extends StatelessWidget {
@@ -358,43 +358,32 @@ class QuranScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Locale selectedLocale = Localizations.localeOf(context);
     return Column(
       children: [
         Image.asset(getImagePath('quran_header_icn')),
-        Container(
+        Divider(
+          thickness: 2,
           height: 2,
-          width: double.infinity,
-          color: AppTheme.primalyLightColor,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: Text(
-            'Chapter Name',
-            style: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
+          child: Text(getTranslation(context).chapterName,
+              style: Theme.of(context).textTheme.bodyMedium),
         ),
-        Container(
+        Divider(
+          thickness: 2,
           height: 2,
-          width: double.infinity,
-          color: AppTheme.primalyLightColor,
         ),
         Expanded(
-          child: ListView.separated(
+          child: ListView.builder(
               physics: BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 return ChapterTitle(
-                  text: englishQuranSurahs[index],
+                  text: selectedLocale.languageCode == 'en'
+                      ? englishQuranSurahs[index]
+                      : arabicAuranSuras[index],
                   index: index,
-                );
-              },
-              separatorBuilder: (context, index) {
-                return Container(
-                  height: 2,
-                  width: double.infinity,
-                  color: AppTheme.primalyLightColor,
                 );
               },
               itemCount: 114),
