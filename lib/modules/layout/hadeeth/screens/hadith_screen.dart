@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:islamic_app/core/functions/get_image_path.dart';
-import 'package:islamic_app/core/themes/app_themes.dart';
+import 'package:islamic_app/core/functions/get_translation.dart';
 import 'package:islamic_app/modules/layout/hadeeth/widgets/hadith_title.dart';
 
 class HadithsScreen extends StatelessWidget {
@@ -21,9 +20,8 @@ class HadithsScreen extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(
-            'Hadiths',
-            textAlign: TextAlign.center,
+          child: Text(getTranslation(context).hadiths,
+              textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodyMedium),
         ),
         Divider(

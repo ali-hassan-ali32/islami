@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:islamic_app/core/functions/get_translation.dart';
 import 'package:islamic_app/core/themes/app_themes.dart';
 
 class SabhaScreen extends StatefulWidget {
@@ -53,7 +54,7 @@ class _SabhaScreenState extends State<SabhaScreen> {
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 16, top: 25),
-            child: Text('Number of praises',
+            child: Text(getTranslation(context).numberOfPraises,
                 style: Theme.of(context).textTheme.bodyMedium),
           ),
           // SizedBox(height: 0,),

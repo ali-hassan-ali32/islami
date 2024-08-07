@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:islamic_app/modules/layout/screens/layout_screen.dart';
+import 'package:islamic_app/modules/layout/home/screens/layout_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   static final String routeName = '/';
@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Duration(seconds: 3),
       () {
         Navigator.pushNamedAndRemoveUntil(
-            context, LayoutScreen.routeName, (route) => false);
+            context, HomeScreen.routeName, (route) => false);
       },
     );
     super.initState();
