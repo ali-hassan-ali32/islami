@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islamic_app/core/functions/get_translation.dart';
-import 'package:islamic_app/core/themes/app_themes.dart';
 import 'package:islamic_app/core/widgets/background_widget.dart';
 
 class HadithDetailsScreen extends StatefulWidget {
@@ -44,13 +43,10 @@ class _HadithDetailsScreenState extends State<HadithDetailsScreen> {
                         hadith[0],
                         textAlign: TextAlign.center,
                         textDirection: TextDirection.rtl,
-                        style: TextStyle(
-                            fontSize: 25,
-                            color: AppTheme.isDark
-                                ? AppTheme.darkSecondary
-                                : Colors.black,
-                            fontFamily: 'inter'),
-                      ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(fontFamily: 'inter')),
                     ),
                     Divider(
                       thickness: 2,

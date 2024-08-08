@@ -21,5 +21,24 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "chapterName": MessageLookupByLibrary.simpleMessage("Chapter Name"),
+        "dark": MessageLookupByLibrary.simpleMessage("Dark"),
+        "hadith": MessageLookupByLibrary.simpleMessage("Hadith"),
+        "hadithNumber": MessageLookupByLibrary.simpleMessage("Hadith Number"),
+        "hadiths": MessageLookupByLibrary.simpleMessage("Hadiths"),
+        "holyQuranRadio":
+            MessageLookupByLibrary.simpleMessage("Holy Quran Radio"),
+        "islami": MessageLookupByLibrary.simpleMessage("Islami"),
+        "language": MessageLookupByLibrary.simpleMessage("Language"),
+        "light": MessageLookupByLibrary.simpleMessage("Light"),
+        "numberOfPraises":
+            MessageLookupByLibrary.simpleMessage("Number of Praises"),
+        "quran": MessageLookupByLibrary.simpleMessage("Quran"),
+        "radio": MessageLookupByLibrary.simpleMessage("Radio"),
+        "sabha": MessageLookupByLibrary.simpleMessage("Sabha"),
+        "setting": MessageLookupByLibrary.simpleMessage("Setting"),
+        "theme": MessageLookupByLibrary.simpleMessage("Theme")
+      };
 }

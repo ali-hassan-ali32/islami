@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:islamic_app/core/themes/app_themes.dart';
 import 'package:islamic_app/core/widgets/background_widget.dart';
 import 'package:islamic_app/modules/layout/quran/widgets/verse_content.dart';
 
@@ -30,11 +29,9 @@ class _ChapterDetailsScreenState extends State<ChapterDetailsScreen> {
             appBar: AppBar(
               title: Text(
                 arg.title,
-                style: TextStyle(
-                    fontSize: 30,
-                    color:
-                        AppTheme.isDark ? AppTheme.darkSecondary : Colors.black,
-                    fontFamily: 'Messiri'),
+                style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
               ),
             ),
             body: Card(

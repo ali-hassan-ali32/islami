@@ -6,10 +6,10 @@ class AppTheme {
 
   static Color darkPrimaly = Color(0xff141A2E);
   static Color darkSecondary = Color(0xffFACC1D);
-  static const bool isDark = true;
 
   static ThemeData light = ThemeData(
       cardColor: Colors.white,
+      bottomSheetTheme: BottomSheetThemeData(backgroundColor: Colors.white),
       textTheme: TextTheme(
         titleSmall: TextStyle(
             color: Color(0xff242424),
@@ -58,10 +58,10 @@ class AppTheme {
       )),
       colorScheme: ColorScheme.fromSeed(
           seedColor: lightPrimaly,
-          primary: lightPrimaly,
+          primary: lightSecondary,
           onPrimary: Colors.white,
           secondary: lightPrimaly,
-          onSecondary: Colors.blue),
+          onSecondary: lightPrimaly),
       appBarTheme: AppBarTheme(
           iconTheme: IconThemeData(
             color: Colors.black,
@@ -85,6 +85,7 @@ class AppTheme {
 
   static ThemeData dark = ThemeData(
       cardColor: darkPrimaly,
+      bottomSheetTheme: BottomSheetThemeData(backgroundColor: darkPrimaly),
       textTheme: TextTheme(
         titleSmall: TextStyle(
             color: Colors.white,
@@ -135,7 +136,7 @@ class AppTheme {
           primary: darkPrimaly,
           onPrimary: lightSecondary,
           secondary: darkSecondary,
-          onSecondary: lightSecondary),
+          onSecondary: darkPrimaly),
       appBarTheme: AppBarTheme(
           iconTheme: IconThemeData(
             color: Colors.white,

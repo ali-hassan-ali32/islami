@@ -1,20 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:islamic_app/core/functions/get_translation.dart';
+import 'package:islamic_app/providers/theme/theme_provider.dart';
+import 'package:provider/provider.dart';
 
-class ThemeBottomSheet extends StatelessWidget {
+class ThemeBottomSheet extends StatefulWidget {
   const ThemeBottomSheet({super.key});
 
   @override
+  State<ThemeBottomSheet> createState() => _ThemeBottomSheetState();
+}
+
+class _ThemeBottomSheetState extends State<ThemeBottomSheet> {
+  @override
   Widget build(BuildContext context) {
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return Container(
       padding: EdgeInsets.all(24),
-      color: Theme.of(context).colorScheme.primary,
       child: Column(
         children: [
-          _getSelectedItem(context, 'Dark'),
+          InkWell(
+              splashColor: Theme.of(context).colorScheme.secondary,
+              onTap: () {
+                setState(() {
+                  themeProvider.changeTheme(ThemeMode.light);
+                });
+              },
+              child: themeProvider.isDarkEnable()
+                  ? _getUnSelectedItem(context, getTranslation(context).light)
+                  : _getSelectedItem(context, getTranslation(context).light)),
           const SizedBox(
             height: 24,
           ),
-          _getUnSelectedItem(context, "Light"),
+          InkWell(
+              splashColor: Theme.of(context).colorScheme.secondary,
+              onTap: () {
+                setState(() {
+                  themeProvider.changeTheme(ThemeMode.dark);
+                });
+              },
+              child: themeProvider.isDarkEnable()
+                  ? _getSelectedItem(context, getTranslation(context).dark)
+                  : _getUnSelectedItem(context, getTranslation(context).dark)),
         ],
       ),
     );
@@ -36,7 +62,6 @@ class ThemeBottomSheet extends StatelessWidget {
       ],
     );
   }
-
   Widget _getUnSelectedItem(BuildContext context, String text) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

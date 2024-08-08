@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:islamic_app/modules/layout/home/screens/layout_screen.dart';
+import 'package:islamic_app/providers/theme/theme_provider.dart';
 
 class SplashScreen extends StatefulWidget {
   static final String routeName = '/';
@@ -26,6 +27,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset('assets/images/splash.png');
+    var themeProvider = ThemeProvider.get(context);
+    return themeProvider.isDarkEnable()
+        ? Image.asset('assets/images/dark_splash.png')
+        : Image.asset('assets/images/splash.png');
   }
 }
