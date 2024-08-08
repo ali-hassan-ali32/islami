@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:islamic_app/core/functions/get_translation.dart';
-import 'package:islamic_app/core/themes/app_themes.dart';
+import 'package:islamic_app/providers/theme/theme_provider.dart';
 
 class SabhaScreen extends StatefulWidget {
   static final String routeName = 'SabhaScreen';
@@ -25,6 +25,7 @@ class _SabhaScreenState extends State<SabhaScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    var themeProvider = ThemeProvider.get(context);
     return Center(
       child: Column(
         children: [
@@ -40,7 +41,9 @@ class _SabhaScreenState extends State<SabhaScreen> {
                   angle: 0.1 * angle,
                   alignment: Alignment.center, // origin: Offset(0, 0)
                   child: Image.asset(
-                    'assets/images/body of seb7a.png',
+                    themeProvider.isDarkEnable()
+                        ? 'assets/images/dark-body of seb7a.png'
+                        : 'assets/images/body of seb7a.png',
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -49,7 +52,9 @@ class _SabhaScreenState extends State<SabhaScreen> {
               Positioned(
                   top: 25,
                   right: 70,
-                  child: Image.asset('assets/images/head of seb7a.png')),
+                  child: Image.asset(themeProvider.isDarkEnable()
+                      ? 'assets/images/dark-head of seb7a.png'
+                      : 'assets/images/head of seb7a.png')),
             ],
           ),
           Padding(
@@ -62,9 +67,7 @@ class _SabhaScreenState extends State<SabhaScreen> {
             width: 55,
             height: 60,
             decoration: BoxDecoration(
-                color: AppTheme.isDark
-                    ? AppTheme.darkPrimaly
-                    : AppTheme.lightPrimaly,
+                color: Theme.of(context).colorScheme.onSecondary,
                 borderRadius: BorderRadius.all(Radius.circular(25))),
             child: Center(
                 child: Text('$praisesNumber', style: TextStyle(fontSize: 25))),
@@ -91,14 +94,10 @@ class _SabhaScreenState extends State<SabhaScreen> {
                 style: Theme.of(context).elevatedButtonTheme.style,
                 child: Text(
                   praisesName[selectedPraise],
-                  style: TextStyle(
-                      fontWeight:
-                          Theme.of(context).textTheme.bodyMedium!.fontWeight,
-                      fontSize: 25,
-                      fontFamily: 'inter',
-                      color:
-                          AppTheme.isDark ? Color(0xff242424) : Colors.white),
-                )),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .copyWith(color: Theme.of(context).cardColor))),
           ),
         ],
       ),

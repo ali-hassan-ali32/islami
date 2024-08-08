@@ -37,6 +37,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: any
+  provider: ^6.1.2
+  shared_preferences: ^2.2.3
 
 
 dev_dependencies:
@@ -68,6 +70,7 @@ flutter:
     - assets/icons/
     - assets/suras/
     - assets/hadith/
+    - lib/l10n/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
