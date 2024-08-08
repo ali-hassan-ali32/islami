@@ -9,6 +9,7 @@ class AppTheme {
   static const bool isDark = true;
 
   static ThemeData light = ThemeData(
+      cardColor: Colors.white,
       textTheme: TextTheme(
         titleSmall: TextStyle(
             color: Color(0xff242424),
@@ -59,7 +60,7 @@ class AppTheme {
           seedColor: lightPrimaly,
           primary: lightPrimaly,
           onPrimary: Colors.white,
-          secondary: Colors.red,
+          secondary: lightPrimaly,
           onSecondary: Colors.blue),
       appBarTheme: AppBarTheme(
           iconTheme: IconThemeData(
@@ -83,6 +84,7 @@ class AppTheme {
       ));
 
   static ThemeData dark = ThemeData(
+      cardColor: darkPrimaly,
       textTheme: TextTheme(
         titleSmall: TextStyle(
             color: Colors.white,
@@ -131,9 +133,9 @@ class AppTheme {
       colorScheme: ColorScheme.fromSeed(
           seedColor: darkPrimaly,
           primary: darkPrimaly,
-          onPrimary: darkPrimaly,
+          onPrimary: lightSecondary,
           secondary: darkSecondary,
-          onSecondary: Colors.blue),
+          onSecondary: lightSecondary),
       appBarTheme: AppBarTheme(
           iconTheme: IconThemeData(
             color: Colors.white,
