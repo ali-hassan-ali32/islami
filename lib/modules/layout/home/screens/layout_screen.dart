@@ -5,7 +5,7 @@ import 'package:islamic_app/modules/layout/hadeeth/screens/hadith_screen.dart';
 import 'package:islamic_app/modules/layout/quran/screen/quran_screen.dart';
 import 'package:islamic_app/modules/layout/radio/screens/radio_screen.dart';
 import 'package:islamic_app/modules/layout/sabha/screens/sabha_screen.dart';
-import 'package:islamic_app/modules/layout/screens/setting.dart';
+import 'package:islamic_app/modules/layout/setting/screens/setting.dart';
 
 class HomeScreen extends StatefulWidget {
   static final String routeName = 'LayoutScreen';
