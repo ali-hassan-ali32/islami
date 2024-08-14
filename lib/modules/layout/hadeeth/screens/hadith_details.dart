@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islamic_app/core/functions/get_translation.dart';
-import 'package:islamic_app/core/themes/app_themes.dart';
 import 'package:islamic_app/core/widgets/background_widget.dart';
 
 class HadithDetailsScreen extends StatefulWidget {
-  static final String routeName = 'HadithDetailsScreen';
+  static const String routeName = 'HadithDetailsScreen';
 
-  HadithDetailsScreen({super.key});
+  const HadithDetailsScreen({super.key});
 
   @override
   State<HadithDetailsScreen> createState() => _HadithDetailsScreenState();
@@ -35,7 +34,7 @@ class _HadithDetailsScreenState extends State<HadithDetailsScreen> {
       ),
       body: Card(
           child: hadith.isEmpty
-              ? Center(child: CircularProgressIndicator())
+              ? const Center(child: CircularProgressIndicator())
               : Column(
                   children: [
                     Padding(
@@ -44,13 +43,10 @@ class _HadithDetailsScreenState extends State<HadithDetailsScreen> {
                         hadith[0],
                         textAlign: TextAlign.center,
                         textDirection: TextDirection.rtl,
-                        style: TextStyle(
-                            fontSize: 25,
-                            color: AppTheme.isDark
-                                ? AppTheme.darkSecondary
-                                : Colors.black,
-                            fontFamily: 'inter'),
-                      ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(fontFamily: 'inter')),
                     ),
                     Divider(
                       thickness: 2,
@@ -61,15 +57,19 @@ class _HadithDetailsScreenState extends State<HadithDetailsScreen> {
                     ),
                     Expanded(
                       child: ListView.builder(
-                        physics: BouncingScrollPhysics(),
+                        physics: const BouncingScrollPhysics(),
                         itemCount: hadith.length - 1,
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              hadith[index + 1],
-                              textDirection: TextDirection.rtl,
-                              style: Theme.of(context).textTheme.bodySmall,
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Text(
+                                hadith[index + 1],
+                                textAlign: TextAlign.justify,
+                                textDirection: TextDirection.rtl,
+                                style: Theme.of(context).textTheme.bodySmall,
+                              ),
                             ),
                           );
                         },

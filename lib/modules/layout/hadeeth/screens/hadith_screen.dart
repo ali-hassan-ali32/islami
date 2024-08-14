@@ -4,15 +4,19 @@ import 'package:islamic_app/core/functions/get_translation.dart';
 import 'package:islamic_app/modules/layout/hadeeth/widgets/hadith_title.dart';
 
 class HadithsScreen extends StatelessWidget {
-  static final String routeName = 'HadesScreen';
+  static const String routeName = 'HadesScreen';
 
   const HadithsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Column(
       children: [
-        Image.asset(getImagePath('hadith_header')),
+        Image(
+          height: size.height * 0.3,
+          image: AssetImage(getImagePath('hadith_header')),
+        ),
         Divider(
           color: Theme.of(context).dividerColor,
           height: 2,
@@ -31,7 +35,7 @@ class HadithsScreen extends StatelessWidget {
         ),
         Expanded(
           child: ListView.builder(
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 return HadithTitle(fileIndex: index);
               },

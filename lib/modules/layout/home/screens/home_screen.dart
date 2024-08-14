@@ -5,10 +5,10 @@ import 'package:islamic_app/modules/layout/hadeeth/screens/hadith_screen.dart';
 import 'package:islamic_app/modules/layout/quran/screen/quran_screen.dart';
 import 'package:islamic_app/modules/layout/radio/screens/radio_screen.dart';
 import 'package:islamic_app/modules/layout/sabha/screens/sabha_screen.dart';
-import 'package:islamic_app/modules/layout/screens/setting.dart';
+import 'package:islamic_app/modules/layout/setting/screens/setting.dart';
 
 class HomeScreen extends StatefulWidget {
-  static final String routeName = 'LayoutScreen';
+  static const String routeName = 'LayoutScreen';
 
   const HomeScreen({super.key});
 
@@ -19,12 +19,15 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
   List<Widget> screens = [
-    RadioScreen(),
-    SabhaScreen(),
-    HadithsScreen(),
+    const RadioScreen(),
+    const SabhaScreen(),
+    const HadithsScreen(),
     QuranScreen(),
-    SettingScreen()
+    const SettingScreen()
   ];
+  var pageController = PageController(
+    initialPage: 0,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -41,40 +44,50 @@ class _HomeScreenState extends State<HomeScreen> {
         onTap: (value) {
           setState(() {
             selectedIndex = value;
-          });
+                  pageController.animateToPage(selectedIndex,
+                      duration: const Duration(microseconds: 1),
+                      curve: Curves.bounceInOut);
+                });
         },
         currentIndex: selectedIndex,
         items: [
           BottomNavigationBarItem(
-              icon: ImageIcon(
-                AssetImage('assets/icons/radio_blue.png'),
+                    icon: const ImageIcon(
+                      AssetImage('assets/icons/radio_blue.png'),
                 size: 32,
               ),
               label: getTranslation(context).radio),
           BottomNavigationBarItem(
-              icon: ImageIcon(
-                AssetImage('assets/icons/sebha.png'),
+                    icon: const ImageIcon(
+                      AssetImage('assets/icons/sebha.png'),
                 size: 32,
               ),
               label: getTranslation(context).sabha),
           BottomNavigationBarItem(
-              icon: ImageIcon(
-                AssetImage('assets/icons/hades.png'),
+                    icon: const ImageIcon(
+                      AssetImage('assets/icons/hades.png'),
                 size: 32,
               ),
               label: getTranslation(context).hadith),
           BottomNavigationBarItem(
-              icon: ImageIcon(
-                AssetImage('assets/icons/quran.png'),
+                    icon: const ImageIcon(
+                      AssetImage('assets/icons/quran.png'),
                 size: 32,
               ),
               label: getTranslation(context).quran),
           BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: getTranslation(context).setting),
+                    icon: const Icon(Icons.settings),
+                    label: getTranslation(context).setting),
         ],
       ),
-      body: screens[selectedIndex],
-    ));
+            body: PageView(
+                controller: pageController,
+                onPageChanged: (value) {
+                  setState(() {
+                    selectedIndex = value;
+                  });
+                },
+                physics: const BouncingScrollPhysics(),
+                children: screens)));
   }
 }

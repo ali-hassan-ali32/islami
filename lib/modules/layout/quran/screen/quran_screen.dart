@@ -4,7 +4,7 @@ import 'package:islamic_app/core/functions/get_translation.dart';
 import 'package:islamic_app/modules/layout/quran/widgets/chapter_title.dart';
 
 class QuranScreen extends StatelessWidget {
-  static final String routeName = 'QuranScreen';
+  static const String routeName = 'QuranScreen';
   List<String> arabicAuranSuras = [
     "الفاتحه",
     "البقرة",
@@ -237,7 +237,7 @@ class QuranScreen extends StatelessWidget {
     "Al-Falaq",
     "An-Nas"
   ];
-  List<String> ayaNumber = [
+  List<String> ayaNumbers = [
     '7',
     '286',
     '200',
@@ -359,31 +359,76 @@ class QuranScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Locale selectedLocale = Localizations.localeOf(context);
+    Size size = MediaQuery.of(context).size;
     return Column(
       children: [
-        Image.asset(getImagePath('quran_header_icn')),
-        Divider(
+        Image(
+            height: size.height * 0.3,
+            image: AssetImage(getImagePath('quran_header_icn'))),
+        const Divider(
           thickness: 2,
-          height: 2,
+          height: 5,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: Text(getTranslation(context).chapterName,
-              style: Theme.of(context).textTheme.bodyMedium),
+          child: Row(
+            children: [
+              Expanded(
+                flex: 2,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: size.width * 0.01),
+                  child: Text(getTranslation(context).chapterName,
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(fontSize: size.aspectRatio * 46)),
+                ),
+              ),
+              Expanded(
+                child: SizedBox(
+                  height: 45,
+                  child: VerticalDivider(
+                    thickness: 2,
+                    width: 20,
+                    color: Theme.of(context).colorScheme.secondary,
+                  ),
+                ),
+              ),
+              Expanded(
+                  flex: 2,
+                  child: Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: size.width * 0.01),
+                    child: Text(
+                      getTranslation(context).ayaNumber,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(fontSize: size.aspectRatio * 46),
+                    ),
+                  )),
+            ],
+          ),
         ),
-        Divider(
+        const Divider(
           thickness: 2,
           height: 2,
         ),
         Expanded(
-          child: ListView.builder(
-              physics: BouncingScrollPhysics(),
+          child: ListView.separated(
+              physics: const BouncingScrollPhysics(),
+              separatorBuilder: (context, index) => const SizedBox(
+                    height: 10,
+                  ),
               itemBuilder: (context, index) {
                 return ChapterTitle(
-                  text: selectedLocale.languageCode == 'en'
+                  size: size,
+                  suraContent: selectedLocale.languageCode == 'en'
                       ? englishQuranSurahs[index]
                       : arabicAuranSuras[index],
                   index: index,
+                  ayaNumber: ayaNumbers[index],
                 );
               },
               itemCount: 114),
