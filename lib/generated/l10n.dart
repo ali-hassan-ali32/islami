@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -116,6 +115,16 @@ class S {
     return Intl.message(
       'Theme',
       name: 'theme',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Aya Number`
+  String get ayaNumber {
+    return Intl.message(
+      'Aya Number',
+      name: 'ayaNumber',
       desc: '',
       args: [],
     );

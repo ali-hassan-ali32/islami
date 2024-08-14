@@ -15,14 +15,16 @@ class _ThemeBottomSheetState extends State<ThemeBottomSheet> {
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return Container(
-      padding: EdgeInsets.all(24),
+      padding: const EdgeInsets.all(24),
       child: Column(
         children: [
           InkWell(
               splashColor: Theme.of(context).colorScheme.secondary,
               onTap: () {
                 setState(() {
-                  themeProvider.changeTheme(ThemeMode.light);
+                  if (themeProvider.currentTheme != ThemeMode.light) {
+                    themeProvider.changeTheme(ThemeMode.light);
+                  }
                 });
               },
               child: themeProvider.isDarkEnable()

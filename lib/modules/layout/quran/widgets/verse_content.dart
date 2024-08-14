@@ -1,22 +1,29 @@
 import 'package:flutter/material.dart';
 
 class VerseContent extends StatelessWidget {
-  final String content;
-  final int index;
+  final String aya;
+  final Size size;
 
-  VerseContent({
+  const VerseContent({
     super.key,
-    required this.content,
-    required this.index,
+    required this.aya,
+    required this.size
   });
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      textDirection: TextDirection.rtl,
-      '${content}\n (${index + 1})',
-      textAlign: TextAlign.center,
-      style: Theme.of(context).textTheme.bodySmall,
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Text(
+          textDirection: TextDirection.rtl,
+          aya,
+          textAlign: TextAlign.justify,
+          style: Theme.of(context).textTheme.bodySmall!.copyWith(
+            fontSize: size.aspectRatio * 40
+          )
+        ),
+      ),
     );
   }
 }

@@ -3,7 +3,7 @@ import 'package:islamic_app/core/functions/get_translation.dart';
 import 'package:islamic_app/providers/theme/theme_provider.dart';
 
 class SabhaScreen extends StatefulWidget {
-  static final String routeName = 'SabhaScreen';
+  static const  String routeName = 'SabhaScreen';
 
   const SabhaScreen({super.key});
 
@@ -14,72 +14,83 @@ class SabhaScreen extends StatefulWidget {
 class _SabhaScreenState extends State<SabhaScreen> {
   int praisesNumber = 0;
   int selectedPraise = 0;
-  int angle = 0;
   List<String> praisesName = [
     'سبحان الله',
     'الحمد الله',
     'الله اكبر',
     'لا إله إلا الله وحده لا شريك له، له الملك، وله الحمد، وهو على كل شيء قدير'
   ];
+  double turns = 0.0;
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     var themeProvider = ThemeProvider.get(context);
-    return Center(
+    return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(vertical: 64),
+      physics: const BouncingScrollPhysics(),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Stack(
-            alignment: Alignment.center,
             clipBehavior: Clip.none,
             children: [
               Container(
-                margin: EdgeInsets.only(top: 70),
-                width: 250,
-                height: 250,
-                child: Transform.rotate(
-                  angle: 0.1 * angle,
-                  alignment: Alignment.center, // origin: Offset(0, 0)
-                  child: Image.asset(
-                    themeProvider.isDarkEnable()
-                        ? 'assets/images/dark-body of seb7a.png'
-                        : 'assets/images/body of seb7a.png',
+                margin: const EdgeInsets.only(top: 79),
+                child: AnimatedRotation(
+                  turns: turns,
+                  duration: const Duration(milliseconds: 150),
+                  child: Image(
                     fit: BoxFit.cover,
+                    width: themeProvider.isDarkEnable()
+                        ? size.width * 0.6
+                        : size.width * 0.8,
+                    height: themeProvider.isDarkEnable()
+                        ? size.height * 0.29
+                        : size.height * 0.3,
+                    image: themeProvider.isDarkEnable()
+                        ? const AssetImage('assets/images/dark-body of seb7a.png')
+                        : const AssetImage('assets/images/body of seb7a.png'),
                   ),
                 ),
               ),
-              // Positioned(top: 65,right: 5,child: Image.asset('assets/images/body of seb7a.png')),
               Positioned(
-                  top: 25,
-                  right: 70,
-                  child: Image.asset(themeProvider.isDarkEnable()
-                      ? 'assets/images/dark-head of seb7a.png'
-                      : 'assets/images/head of seb7a.png')),
+                left: themeProvider.isDarkEnable()
+                    ? (size.width * 0.28)
+                    : (size.width * 0.35),
+                bottom: size.height * 0.265,
+                child: Image(
+                  fit: BoxFit.cover,
+                  width: size.width * 0.18,
+                  height: size.height * 0.11,
+                  image: themeProvider.isDarkEnable()
+                      ? const AssetImage('assets/images/dark-head of seb7a.png')
+                      : const AssetImage('assets/images/head of seb7a.png'),
+                ),
+              ),
             ],
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 16, top: 25),
+            padding: EdgeInsets.only(bottom: size.height * 0.01, top: 20),
             child: Text(getTranslation(context).numberOfPraises,
                 style: Theme.of(context).textTheme.bodyMedium),
           ),
-          // SizedBox(height: 0,),
           Container(
-            width: 55,
-            height: 60,
+            width: size.width * 0.2,
+            height: size.height * 0.08,
             decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.onSecondary,
-                borderRadius: BorderRadius.all(Radius.circular(25))),
+                borderRadius: const BorderRadius.all(Radius.circular(25))),
             child: Center(
-                child: Text('$praisesNumber', style: TextStyle(fontSize: 25))),
+                child: Text('$praisesNumber', style: const TextStyle(fontSize: 25))),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
+            padding: EdgeInsets.symmetric(vertical: size.height * 0.02),
             child: ElevatedButton(
                 onPressed: () {
                   setState(() {
+                    turns += 1 / 18;
                     praisesNumber++;
-                    angle++;
-                    angle %= 10;
                     if (selectedPraise == 3) {
                       praisesNumber = 0;
                       selectedPraise = 0;
@@ -94,10 +105,12 @@ class _SabhaScreenState extends State<SabhaScreen> {
                 style: Theme.of(context).elevatedButtonTheme.style,
                 child: Text(
                   praisesName[selectedPraise],
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall!
-                        .copyWith(color: Theme.of(context).cardColor))),
+                  textAlign: TextAlign.center,
+                  textDirection: TextDirection.rtl,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall!
+                      .copyWith(color: Theme.of(context).cardColor))),
           ),
         ],
       ),
