@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:islamic_app/providers/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
 
-class BackgroundWidget extends StatelessWidget {
-  Widget child;
+import '../providers/theme/theme_provider.dart';
 
-  BackgroundWidget({super.key, required this.child});
+class BackgroundWidget extends StatelessWidget {
+  final Widget child;
+
+  const BackgroundWidget({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {

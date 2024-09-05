@@ -12,7 +12,7 @@ class LocaleProvider extends ChangeNotifier {
   }
 
   void readSavedLocale() async {
-    currentLocaleCode = await prefs.getString(localeKey) ?? 'en';
+    currentLocaleCode = prefs.getString(localeKey) ?? 'en';
   }
 
   void saveLocale() async {
