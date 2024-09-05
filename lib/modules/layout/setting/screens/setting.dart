@@ -13,7 +13,6 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     var localeProvider = LocaleProvider.get(context);
     var themeProvider = ThemeProvider.get(context);
 
