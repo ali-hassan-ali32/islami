@@ -37,8 +37,12 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: any
+  # state mangement:
   provider: ^6.1.2
   shared_preferences: ^2.2.3
+  awesome_bottom_bar: ^1.2.4
+  animate_do: ^3.3.4
+  # animations:
 
 
 dev_dependencies:
@@ -66,11 +70,12 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/
-    - assets/icons/
-    - assets/suras/
+    - assets/fonts/
     - assets/hadith/
-    - lib/l10n/
+    - assets/icons/
+    - assets/images/
+    - assets/images/icons/
+    - assets/suras/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

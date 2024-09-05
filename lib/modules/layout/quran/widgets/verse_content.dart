@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class VerseContent extends StatelessWidget {
-  final String aya;
+  final List<String> aya;
   final Size size;
 
   const VerseContent({
@@ -17,11 +17,9 @@ class VerseContent extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Text(
           textDirection: TextDirection.rtl,
-          aya,
-          textAlign: TextAlign.justify,
-          style: Theme.of(context).textTheme.bodySmall!.copyWith(
-            fontSize: size.aspectRatio * 40
-          )
+            aya.join(),
+            textAlign: TextAlign.justify,
+          style: Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 16)
         ),
       ),
     );

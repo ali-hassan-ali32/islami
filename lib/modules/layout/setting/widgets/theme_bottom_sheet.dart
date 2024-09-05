@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:islamic_app/core/functions/get_translation.dart';
-import 'package:islamic_app/providers/theme/theme_provider.dart';
+import 'package:islamic_app/modules/layout/setting/widgets/selected_item.dart';
+import 'package:islamic_app/modules/layout/setting/widgets/unselected_item.dart';
 import 'package:provider/provider.dart';
+
+import '../../../../core/providers/theme/theme_provider.dart';
+import '../../../../core/utils/get_translation.dart';
 
 class ThemeBottomSheet extends StatefulWidget {
   const ThemeBottomSheet({super.key});
@@ -17,6 +20,7 @@ class _ThemeBottomSheetState extends State<ThemeBottomSheet> {
     return Container(
       padding: const EdgeInsets.all(24),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           InkWell(
               splashColor: Theme.of(context).colorScheme.secondary,
@@ -28,8 +32,10 @@ class _ThemeBottomSheetState extends State<ThemeBottomSheet> {
                 });
               },
               child: themeProvider.isDarkEnable()
-                  ? _getUnSelectedItem(context, getTranslation(context).light)
-                  : _getSelectedItem(context, getTranslation(context).light)),
+                  ? UnSelectedItem(
+                      context: context, text: getTranslation(context).light)
+                  : SelectedItem(
+                      context: context, text: getTranslation(context).light)),
           const SizedBox(
             height: 24,
           ),
@@ -41,38 +47,13 @@ class _ThemeBottomSheetState extends State<ThemeBottomSheet> {
                 });
               },
               child: themeProvider.isDarkEnable()
-                  ? _getSelectedItem(context, getTranslation(context).dark)
-                  : _getUnSelectedItem(context, getTranslation(context).dark)),
+                  ? SelectedItem(
+                      context: context, text: getTranslation(context).dark)
+                  : UnSelectedItem(
+                      context: context, text: getTranslation(context).dark)),
         ],
       ),
     );
   }
-
-  Widget _getSelectedItem(BuildContext context, String text) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(text,
-            style: Theme.of(context)
-                .textTheme
-                .bodyMedium!
-                .copyWith(color: Theme.of(context).colorScheme.secondary)),
-        Icon(
-          Icons.check_circle_outline_outlined,
-          color: Theme.of(context).colorScheme.secondary,
-        ),
-      ],
-    );
-  }
-  Widget _getUnSelectedItem(BuildContext context, String text) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          text,
-          style: Theme.of(context).textTheme.bodyMedium,
-        ),
-      ],
-    );
-  }
 }
+

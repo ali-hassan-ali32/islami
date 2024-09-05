@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:islamic_app/core/functions/get_translation.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../utils/get_translation.dart';
 
 class ThemeProvider extends ChangeNotifier {
   ThemeMode currentTheme = ThemeMode.light;

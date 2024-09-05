@@ -142,7 +142,7 @@ class AppTheme {
           onPrimary: lightSecondary,
           secondary: darkSecondary,
           onSecondary: darkPrimaly,
-          tertiary: Colors.cyanAccent),
+          tertiary: darkSecondary),
       appBarTheme: AppBarTheme(
           iconTheme: const IconThemeData(
             color: Colors.white,
