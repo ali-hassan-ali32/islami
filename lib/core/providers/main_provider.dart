@@ -430,4 +430,68 @@ class MainProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  String numberToText(int number) {
+    final List<String> units = [
+      'zero',
+      'one',
+      'two',
+      'three',
+      'four',
+      'five',
+      'six',
+      'seven',
+      'eight',
+      'nine',
+      'ten',
+      'eleven',
+      'twelve',
+      'thirteen',
+      'fourteen',
+      'fifteen',
+      'sixteen',
+      'seventeen',
+      'eighteen',
+      'nineteen'
+    ];
+
+    final List<String> tens = [
+      '',
+      '',
+      'twenty',
+      'thirty',
+      'forty',
+      'fifty',
+      'sixty',
+      'seventy',
+      'eighty',
+      'ninety'
+    ];
+
+    String capitalize(String text) {
+      if (text.isEmpty) return text;
+      return text[0].toUpperCase() + text.substring(1);
+    }
+
+    String text;
+
+    if (number < 20) {
+      text = units[number];
+    } else if (number < 100) {
+      text = tens[number ~/ 10] +
+          (number % 10 != 0 ? ' ' + units[number % 10] : '');
+    } else if (number < 1000) {
+      text = units[number ~/ 100] +
+          ' Hundred' +
+          (number % 100 != 0 ? ' and ' + numberToText(number % 100) : '');
+    } else if (number < 1000000) {
+      text = numberToText(number ~/ 1000) +
+          ' Thousand' +
+          (number % 1000 != 0 ? ' ' + numberToText(number % 1000) : '');
+    } else {
+      text = number.toString();
+    }
+
+    return capitalize(text);
+  }
 }
