@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:islamic_app/core/providers/locale/locale_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../modules/layout/hadith/screens/hadith_screen.dart';
 import '../../modules/layout/quran/screen/quran_screen.dart';
@@ -431,8 +433,13 @@ class MainProvider extends ChangeNotifier {
     }
   }
 
-  String numberToText(int number) {
-    final List<String> units = [
+  static void getCurrentLocal(String currentLocale) async {
+    var prefs = await SharedPreferences.getInstance();
+    currentLocale = LocaleProvider(prefs: prefs).getCurrentLocaleText();
+  }
+
+  String numberToText({required int number, required String lang}) {
+    final List<String> enUnits = [
       'zero',
       'one',
       'two',
@@ -455,7 +462,7 @@ class MainProvider extends ChangeNotifier {
       'nineteen'
     ];
 
-    final List<String> tens = [
+    final List<String> enTens = [
       '',
       '',
       'twenty',
@@ -468,12 +475,51 @@ class MainProvider extends ChangeNotifier {
       'ninety'
     ];
 
+    final List<String> arUnits = [
+      'صفر',
+      'واحد',
+      'اثنان',
+      'ثلاثة',
+      'أربعة',
+      'خمسة',
+      'ستة',
+      'سبعة',
+      'ثمانية',
+      'تسعة',
+      'عشرة',
+      'أحد عشر',
+      'اثنا عشر',
+      'ثلاثة عشر',
+      'أربعة عشر',
+      'خمسة عشر',
+      'ستة عشر',
+      'سبعة عشر',
+      'ثمانية عشر',
+      'تسعة عشر'
+    ];
+
+    final List<String> arTens = [
+      '',
+      '',
+      'عشرون',
+      'ثلاثون',
+      'أربعون',
+      'خمسون',
+      'ستون',
+      'سبعون',
+      'ثمانون',
+      'تسعون'
+    ];
+
     String capitalize(String text) {
       if (text.isEmpty) return text;
       return text[0].toUpperCase() + text.substring(1);
     }
 
     String text;
+
+    final units = lang == 'ar' ? arUnits : enUnits;
+    final tens = lang == 'ar' ? arTens : enTens;
 
     if (number < 20) {
       text = units[number];
@@ -482,16 +528,21 @@ class MainProvider extends ChangeNotifier {
           (number % 10 != 0 ? ' ' + units[number % 10] : '');
     } else if (number < 1000) {
       text = units[number ~/ 100] +
-          ' Hundred' +
-          (number % 100 != 0 ? ' and ' + numberToText(number % 100) : '');
+          (lang == 'ar' ? ' مئة' : ' Hundred') +
+          (number % 100 != 0
+              ? (lang == 'ar' ? ' و ' : ' and ') +
+                  numberToText(number: number % 100, lang: lang)
+              : '');
     } else if (number < 1000000) {
-      text = numberToText(number ~/ 1000) +
-          ' Thousand' +
-          (number % 1000 != 0 ? ' ' + numberToText(number % 1000) : '');
+      text = numberToText(number: number ~/ 1000, lang: lang) +
+          (lang == 'ar' ? ' ألف' : ' Thousand') +
+          (number % 1000 != 0
+              ? ' ' + numberToText(number: number % 1000, lang: lang)
+              : '');
     } else {
       text = number.toString();
     }
 
-    return capitalize(text);
+    return lang == 'ar' ? text : capitalize(text);
   }
 }

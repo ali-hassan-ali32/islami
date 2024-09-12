@@ -37,7 +37,7 @@ class CustomBottomBar extends StatelessWidget {
           titleStyle: TextStyle(
             fontSize: screenWidth * 0.03,
           ),
-          iconSize: screenWidth * 0.06,
+          iconSize: screenWidth * 0.05,
           itemStyle: ItemStyle.hexagon,
           chipStyle: ChipStyle(
             background: Theme.of(context).colorScheme.onSecondary,
