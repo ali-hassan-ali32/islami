@@ -3,6 +3,7 @@ import 'package:islamic_app/core/providers/main_provider.dart';
 import 'package:islamic_app/core/utils/get_translation.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../core/providers/locale/locale_provider.dart';
 import '../screens/hadith_details.dart';
 
 class HadithTitle extends StatelessWidget {
@@ -12,8 +13,8 @@ class HadithTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<MainProvider>(
-      builder: (context, value, child) => InkWell(
+    return Consumer2<MainProvider, LocaleProvider>(
+      builder: (context, value, value2, child) => InkWell(
         onTap: () {
           Navigator.pushNamed(context, HadithDetailsScreen.routeName,
               arguments: HadithDetailsArg(fileIndex: fileIndex));
@@ -21,7 +22,7 @@ class HadithTitle extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(12),
           child: Text(
-            '${getTranslation(context).hadithNumber} ${value.numberToText((fileIndex + 1))}',
+            '${getTranslation(context).hadithNumber} ${value.numberToText(number: (fileIndex + 1), lang: value2.currentLocaleCode)}',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 20,
